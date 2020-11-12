@@ -13,7 +13,7 @@ With it is possible to:
 
 ## First steps
 
-1. Create your own config file from the example_config.R
+1. Create your own config file from the config_example.R by renaming it to config.R
 
 config file
 
