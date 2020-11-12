@@ -10,5 +10,5 @@ install.packages("DT")
 install.packages("RColorBrewer")
 
 if(!file.exists("config.R")){
-  warning("Now, you have to create config.R from example_config.R")
+  warning("Now, you have to create config.R from config_example.R")
 }
