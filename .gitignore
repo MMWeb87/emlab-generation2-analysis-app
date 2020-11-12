@@ -43,4 +43,6 @@ docs/
 
 # translation temp files
 po/*~
+
+# custom
 custom_data/scenario_informations.csv

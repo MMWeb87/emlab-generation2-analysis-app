@@ -10,7 +10,7 @@ rm(list=ls())
 
 # Comment to always load latest reporters and logs
 # Uncomment and specify to load specific reporters and logs
-id_to_load <- 1604416986386
+#id_to_load <- 1604416986386
 
 config_file <- "config.R"  
 source(file = "app_scripts/init.R")

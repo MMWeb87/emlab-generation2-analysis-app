@@ -4,12 +4,17 @@
 
 ## Overview
 
-This shiny app is an attempt to make the analysis of EMLab Generation output convenient and flexible. 
+This R shiny app provides an UI to analyse EMLab Generation output. 
 
 With it is possible to:
 
-- analyse runs from EMlab generation with a graphical and interactive shiny interface
-- generate custom reports for further use in publications
+- Analyse runs from EMLab with a graphical and interactive interface
+- Search through the log files
+- Generate custom reports for further use in publications
+
+## Installation
+
+To run
 
 ## First steps
 
