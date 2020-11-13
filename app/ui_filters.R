@@ -2,29 +2,32 @@
 ui_filtersidebar <- function(){
   
   column(width = 3,
-    ui_filtersidebar_plotselection(),
-    ui_filtersidebar_plotheight(),
+    ui_filters$plotselection(),
+    ui_filters$plotheight(),
     hr(),
     tags$label(tags = "control-label", "Filters"),
     tags$br(),
     
     # Filters
-    ui_filter_iteration_range(),
-    ui_filter_single_iterations(),
-    ui_filter_technology(),
-    ui_filter_producer(),
-    ui_filter_cashflow(),
-    ui_filter_fuel(),
-    ui_filter_segment(),
-    # ui_filter_tick_expected(),
-    # ui_filter_tick()
+    ui_filters$iteration_range(),
+    ui_filters$single_iterations(),
+    ui_filters$market(),
+    ui_filters$technology(),
+    ui_filters$producer(),
+    ui_filters$cashflow(),
+    ui_filters$fuel(),
+    ui_filters$segment(),
+    # ui_filters$tick_expected(),
+    # ui_filters$tick()
   )
   
 }
 
+ui_filters <- list()
+
 # Standard filters ----------------------------------------------------------
 
-ui_filter_iteration_range <- function(){
+ui_filters$iteration_range <- function(){
   
   conditionalPanel(
     condition = "output.hide_filter_iteration_range == false",
@@ -42,7 +45,7 @@ ui_filter_iteration_range <- function(){
   
 }
 
-ui_filter_single_iterations <- function(){
+ui_filters$single_iterations <- function(){
   
   conditionalPanel(
     condition = "output.show_filter_single_iteration == true",
@@ -58,7 +61,17 @@ ui_filter_single_iterations <- function(){
   )
 }
 
-ui_filter_technology <- function(){
+ui_filters$market <- function(){
+  conditionalPanel(
+    condition = "output.show_filter_market == true",
+    box(title = "Filter by Markets", width = 12, collapsible = TRUE, collapsed = TRUE, solidHeader = FALSE,
+        checkboxGroupInput("markets_checked", label = "",
+                           choices = all_markets,
+                           selected = selected_markets))
+  )
+}  
+
+ui_filters$technology <- function(){
   conditionalPanel(
     condition = "output.show_filter_technology == true",
     box(title = "Filter by Technologies", width = 12, collapsible = TRUE, collapsed = TRUE, solidHeader = FALSE,
@@ -69,7 +82,7 @@ ui_filter_technology <- function(){
   
 }
 
-ui_filter_producer <- function(){
+ui_filters$producer <- function(){
   conditionalPanel(
     condition = "output.show_filter_producer == true",
     box(title = "Filter by Producers", width = 12, collapsible = TRUE, collapsed = TRUE, solidHeader = FALSE,
@@ -80,7 +93,7 @@ ui_filter_producer <- function(){
 }  
 
 
-ui_filter_cashflow <- function(){
+ui_filters$cashflow <- function(){
   conditionalPanel(
     condition = "output.show_filter_cashflow == true",
     box(title = "Filter by Cashflow", width = 12, collapsible = TRUE, collapsed = TRUE, solidHeader = FALSE,
@@ -90,7 +103,7 @@ ui_filter_cashflow <- function(){
   )
 }  
 
-ui_filter_fuel <- function(){
+ui_filters$fuel <- function(){
   conditionalPanel(
     condition = "output.show_filter_fuel == true",
     box(title = "Filter by Fuels", width = 12, collapsible = TRUE, collapsed = TRUE, solidHeader = FALSE,
@@ -100,7 +113,7 @@ ui_filter_fuel <- function(){
   )
 }  
 
-ui_filter_segment <- function(){
+ui_filters$segment <- function(){
   conditionalPanel(
     condition = "output.show_filter_segment == true",
     box(title = "Filter by Segment", width = 12, collapsible = TRUE, collapsed = TRUE, solidHeader = FALSE,
@@ -119,7 +132,7 @@ ui_filter_segment <- function(){
   )
 }  
 
-ui_filter_tick_expected <- function(){
+ui_filters$tick_expected <- function(){
   conditionalPanel(
     condition = "output.show_filter_tick_expected == true",
     box(title = "Tick for Expectations", width = 12, collapsible = TRUE, collapsed = TRUE, solidHeader = FALSE,
@@ -131,7 +144,7 @@ ui_filter_tick_expected <- function(){
     ))
 }  
 
-ui_filter_tick <- function(){
+ui_filters$tick <- function(){
   
   conditionalPanel(
     #condition = "output.show_filter_tick == true",
@@ -145,7 +158,7 @@ ui_filter_tick <- function(){
 
 # Plot related controls ---------------------------------------------------
 
-ui_filtersidebar_plotselection <- function(){
+ui_filters$plotselection <- function(){
   
   selectInput(
     inputId = "single_plot_selected", 
@@ -155,7 +168,7 @@ ui_filtersidebar_plotselection <- function(){
   
 }
 
-ui_filtersidebar_plotheight <- function(){
+ui_filters$plotheight <- function(){
   sliderInput(
     "selected_single_plot_height",
     label = "Plot height",

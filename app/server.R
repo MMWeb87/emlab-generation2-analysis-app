@@ -59,48 +59,61 @@ server <- function(input, output) {
   
   ## Custom filters
   
+  ### Filter for market
+  output$show_filter_market <- reactive({
+    toggle_filters("market",input$single_plot_selected)
+  })
+  outputOptions(output, "show_filter_market", suspendWhenHidden = FALSE)  
+  
+  ### Filter for technology
   output$show_filter_technology <- reactive({
     toggle_filters("technology",input$single_plot_selected)
   })
   outputOptions(output, "show_filter_technology", suspendWhenHidden = FALSE)  
   
+  ### Filter for producer
   output$show_filter_producer <- reactive({
     toggle_filters("producer",input$single_plot_selected)
   })
   outputOptions(output, "show_filter_producer", suspendWhenHidden = FALSE)  
   
-  
+  ### Filter for cashflow
   output$show_filter_cashflow <- reactive({
     toggle_filters("cashflow",input$single_plot_selected)
   })
   outputOptions(output, "show_filter_cashflow", suspendWhenHidden = FALSE)
   
-  
+  ### Filter for fuel
   output$show_filter_fuel <- reactive({
     toggle_filters("fuel",input$single_plot_selected)
   })
   outputOptions(output, "show_filter_fuel", suspendWhenHidden = FALSE)  
   
+  ### Filter for segment
   output$show_filter_segment <- reactive({
     toggle_filters("segment",input$single_plot_selected)
   })
   outputOptions(output, "show_filter_segment", suspendWhenHidden = FALSE)  
   
+  ### Filter for tick_expected
   output$show_filter_tick_expected <- reactive({
     toggle_filters("tick_expected",input$single_plot_selected)
   })
   outputOptions(output, "show_filter_tick_expected", suspendWhenHidden = FALSE)  
   
+  ### Filter for tick
   output$show_filter_tick <- reactive({
     toggle_filters("tick_filter",input$single_plot_selected)
   })
   outputOptions(output, "show_filter_tick", suspendWhenHidden = FALSE)  
   
+  ### Filter for single iteration
   output$show_filter_single_iteration <- reactive({
     toggle_filters("iterations",input$single_plot_selected)
   })
   outputOptions(output, "show_filter_single_iteration", suspendWhenHidden = FALSE)  
   
+  ### Filter for range
   output$hide_filter_iteration_range <- reactive({
     toggle_filters("hide_iterations_range",input$single_plot_selected)
   })

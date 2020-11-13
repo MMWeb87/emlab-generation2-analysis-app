@@ -104,12 +104,14 @@ data[["generation_total"]] <- raw_main_results %>%
   get_data_by_prefix(col_prefix = "production", value = "generation") %>%
   separate(col = "key", into = c("var", "market", "technology"), sep = "\\.")
 
-show_filters[["generation_total"]] <- c("technology")
+show_filters[["generation_total"]] <- c("technology", "market")
 
 plots[["generation_total"]] <- function(data, input, average = TRUE){
   
   data <- data %>%
-    filter(technology %in% input$technologies_checked) 
+    filter(technology %in% input$technologies_checked) %>% 
+    filter(market %in% input$markets_checked) 
+  
   
   if(average){
     # Average over all iterations
@@ -817,7 +819,14 @@ plots[["segment_hours"]] <- function(data, input, average = TRUE){
 # variables for inputs and filters
 
 # pre selected filter in config.R
-# problem -> used in several places!!
+# TODO problem -> used in several places!!
+# TODO as array
+
+all_markets <- get_sinlge_variable(data$operational_capacities_by_technology, market)
+if(!exists("selected_markets")){  selected_markets <- all_markets }
+if(exists("custom_market_colors") | exists("market_color_palette")){
+  market_colors <- set_colors(all_market, "custom_market_colors", "market_color_palette")
+}
 
 all_technologies <- get_sinlge_variable(data$operational_capacities_by_technology, technology)
 if(!exists("selected_technologies")){  selected_technologies <- all_technologies }
